@@ -167,35 +167,36 @@ public sealed class CosWriterTests
         fixture.RawResult.ShouldBe(expected);
     }
 
-    private static IEnumerable<object[]> Should_Write_Strings_Correctly_Data()
+    public static IEnumerable<object[]> Should_Write_Strings_Correctly_Data()
     {
         yield return new object[]
         {
             "Hello World",
-            Encoding.ASCII.GetBytes("(Hello World)")
+            Encoding.ASCII.GetBytes("(Hello World)"),
         };
         yield return new object[]
         {
             "Parenthesis like ( and ) should be escaped.",
-            Encoding.ASCII.GetBytes("(Parenthesis like \\( and \\) should be escaped.)")
+            Encoding.ASCII.GetBytes("(Parenthesis like \\( and \\) should be escaped.)"),
         };
 
         var unicodeChars = "ĀĆĎĒĨĩŏŊ";
         yield return new object[]
         {
             unicodeChars,
-            new byte[] { 40, 254, 255, 1, 0, 1, 6, 1, 14, 1, 18, 1, 92, 40, 1, 92, 41, 1, 79, 1, 74, 41 }
+            new byte[] { 40, 254, 255, 1, 0, 1, 6, 1, 14, 1, 18, 1, 92, 40, 1, 92, 41, 1, 79, 1, 74, 41 },
         };
 
         var unicodeAndParenthesis = "ĀĆĎĒĨĩŏŊ and () mixed.";
         yield return new object[]
         {
             unicodeAndParenthesis,
-            new byte[] {
+            new byte[]
+            {
                 40, 254, 255, 1, 0, 1, 6, 1, 14, 1, 18, 1, 92, 40, 1, 92, 41, 1,
                 79, 1, 74, 0, 32, 0, 97, 0, 110, 0, 100, 0, 32, 0, 92, 40, 0, 92,
                 41, 0, 32, 0, 109, 0, 105, 0, 120, 0, 101, 0, 100, 0, 46, 41
-            }
+            },
         };
     }
 
