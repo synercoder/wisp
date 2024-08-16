@@ -177,8 +177,9 @@ public sealed class CosWriter : IDisposable
 
             foreach (var b in bytes)
             {
-                // 0x28 and 0x29 are parenthesis, these bytes need to be escaped within the string.
-                if (b == 0x28 || b == 0x29)
+                // 0x28 and 0x29 are parenthesis and 0x5C is the escape character,
+                // these bytes need to be escaped within the string.
+                if (b == 0x28 || b == 0x29 || b == 0x5C)
                 {
                     //0x5C = \
                     context.Writer.WriteByte(0x5C);
