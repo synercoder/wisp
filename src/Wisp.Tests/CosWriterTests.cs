@@ -184,19 +184,19 @@ public sealed class CosWriterTests
         yield return new object[]
         {
             unicodeChars,
-            new byte[] { 40, 254, 255, 1, 0, 1, 6, 1, 14, 1, 18, 1, 92, 40, 1, 92, 41, 1, 79, 1, 74, 41 },
+            Convert.FromHexString("28FEFF01000106010E0112015C28015C29014F014A29"),
         };
 
         var unicodeAndParenthesis = "ĀĆĎĒĨĩŏŊ and () mixed.";
         yield return new object[]
         {
             unicodeAndParenthesis,
-            new byte[]
-            {
-                40, 254, 255, 1, 0, 1, 6, 1, 14, 1, 18, 1, 92, 40, 1, 92, 41, 1,
-                79, 1, 74, 0, 32, 0, 97, 0, 110, 0, 100, 0, 32, 0, 92, 40, 0, 92,
-                41, 0, 32, 0, 109, 0, 105, 0, 120, 0, 101, 0, 100, 0, 46, 41,
-            },
+            Convert.FromHexString(
+                "28FEFF01000106010E0112015C" +
+                "28015C29014F014A0020006100" +
+                "6E00640020005C28005C290020" +
+                "006D0069007800650064002E29"
+            ),
         };
     }
 
